@@ -1,9 +1,7 @@
 <x-layout>
+    <x-slot:heading>
+         Contact page
+    </x-slot:heading>
     <h1>Hello from the Contact page</h1>
 </x-layout>
 
-<x-nav-link>
- <a href="/">Home</a>
- <a href="/about">About</a>
- <a href="/contact">Contact</a>
-</x-nav-link>
