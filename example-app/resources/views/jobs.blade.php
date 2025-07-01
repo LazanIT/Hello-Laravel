@@ -12,7 +12,12 @@
                 <div class="">
                     <strong>{{ $job['title'] }}:</strong> Pays {{ $job['salary'] }}
                 </div>
+
+            </a>
         @endforeach
-        </a>
+
+        <div>
+            {{ $jobs->links() }}
+        </div>
     </div>
 </x-layout>
