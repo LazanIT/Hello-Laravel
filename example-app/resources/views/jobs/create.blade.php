@@ -23,6 +23,10 @@
                                     placeholder="Shift leader" />
                             </div>
                         </div>
+
+                        @error('title')
+                            <p class="text-red-500 italic text-xs font-semibold">{{ $message }}</p>
+                        @enderror
                     </div>
 
                     <div class="sm:col-span-4">
@@ -37,11 +41,25 @@
                                     placeholder="Salary" />
                             </div>
                         </div>
+
+                        @error('salary')
+                            <p class="text-red-500 italic text-xs font-semibold">{{ $message }}</p>
+                        @enderror
                     </div>
 
 
-
                 </div>
+                {{-- <div class="mt-4">
+                    @if ($errors->any())
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li class="text-red-500 italic">
+                                    {{ $error }}
+                                </li>
+                            @endforeach
+                        </ul>
+                    @endif
+                </div> --}}
             </div>
 
 
