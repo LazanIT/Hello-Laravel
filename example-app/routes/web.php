@@ -75,15 +75,30 @@ Route::patch('/jobs/{id}', function($id)  {
 
      // update
 
-     Job::find($id);
-     // show
+    $job = Job::findOrFail($id);
+
+    $job->update([
+        'title' => request('title'),
+        'salary' => request('salary')
+    ]);
+   
      //redirect
+
+     return redirect('/jobs/', $job->id);
 });
 
 // Brisanje posla ( delete )
 Route::delete('/jobs/{id}', function($id)  {
-     
-  
+     // authorize ( On Hold... )
+     // delete
+
+     $job = Job::findOrFail($id);
+
+     $job->delete();
+
+     // redirect
+
+    return redirect('/jobs');
 });
 
 Route::get('/contact', function(){
