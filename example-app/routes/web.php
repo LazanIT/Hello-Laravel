@@ -1,101 +1,27 @@
 <?php
 
+use App\Http\Controllers\JobController;
 use Illuminate\Support\Facades\Route;
-use App\Models\Job;
+
 
 Route::get('/', function () {
-
- 
-
-
-    return view('home');
-    
+    return view('home');   
 });
-
-   
+ 
 // Prikazuje sve poslove ( index )
-Route::get('/jobs', function () {
-
-    $jobs = Job::with('employer')->latest()->simplePaginate(3);
-
-     return view('jobs.index', [
-        'jobs' => $jobs
-     
-    ]);
-});
-
+Route::get('/jobs', [JobController::class, 'index']);
 // Prikazuje formu za kreiranje posla ( create )
-Route::get('/jobs/create', function(){
-    return view('jobs.create');
-});
-
-
+Route::get('/jobs/create', [JobController::class, 'create']);
 // Prikazuje formu za prikazivanje odredjenog posla( show )
-Route::get('/jobs/{job}', function(Job $job)  {
-    
-    return view('jobs.show', ['job' => $job]);
-});
-
-
+Route::get('/jobs/{job}', [JobController::class, 'show']);
 // Prikazuje formu za cuvanje poslova ( store )
-Route::post('/jobs', function(){
-    request()->validate([
-        'title' => ['required','min:3'],
-        'salary' => ['required','numeric']
-    ]);
-
-    Job::create([
-        'title' => request('title'),
-        'salary'=> request('salary'),
-        'employer_id' => 1
-    ]);
- 
-    return redirect('/jobs');
-});
-
-
+Route::post('/jobs', [JobController::class. 'store'] );
 // Prikazuje formu za izmenu posla ( Edit )
-Route::get('jobs/{job}/edit', function (Job $job){
-
-    return view('jobs.edit', ['job' => $job]);
-});
+Route::get('jobs/{job}/edit', [JobController::class, 'edit']);
 // Azuriranje posla ( update )
-Route::patch('/jobs/{job}', function(Job $job)  {
-
-     // authorize ( On Hold...)
-
-     // validate
-    request()->validate([
-        'title' => ['required', 'min:3'],
-        'salary' => ['required']
-    ]);
-
-    
-
-
-     // update
-
-    $job->update([
-        'title' => request('title'),
-        'salary' => request('salary')
-    ]);
-   
-     //redirect
-
-     return redirect("/jobs/". $job->id);
-});
-
+Route::patch('/jobs/{job}', [JobController::class, 'update']);
 // Brisanje posla ( delete )
-Route::delete('/jobs/{job}', function(Job $job)  {
-     // authorize ( On Hold... )
-     // delete
-
-     $job->delete();
-
-     // redirect
-
-    return redirect('/jobs');
-});
+Route::delete('/jobs/{job}',[JobController::class, 'destroy'] );
 
 Route::get('/contact', function(){
     return view('contact');
