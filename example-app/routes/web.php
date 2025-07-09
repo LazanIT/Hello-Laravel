@@ -7,19 +7,22 @@ use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'home');
  
-// Prikazuje sve poslove ( index )
-Route::get('/jobs', [JobController::class, 'index']);
+Route::controller(JobController::class)->group(function () {
+    // Prikazuje sve poslove ( index )
+Route::get('/jobs', 'index');
 // Prikazuje formu za kreiranje posla ( create )
-Route::get('/jobs/create', [JobController::class, 'create']);
+Route::get('/jobs/create', 'create');
 // Prikazuje formu za prikazivanje odredjenog posla( show )
-Route::get('/jobs/{job}', [JobController::class, 'show']);
+Route::get('/jobs/{job}', 'show');
 // Prikazuje formu za cuvanje poslova ( store )
-Route::post('/jobs', [JobController::class. 'store'] );
+Route::post('/jobs','store' );
 // Prikazuje formu za izmenu posla ( Edit )
-Route::get('jobs/{job}/edit', [JobController::class, 'edit']);
+Route::get('jobs/{job}/edit', 'edit');
 // Azuriranje posla ( update )
-Route::patch('/jobs/{job}', [JobController::class, 'update']);
+Route::patch('/jobs/{job}', 'update');
 // Brisanje posla ( delete )
-Route::delete('/jobs/{job}',[JobController::class, 'destroy'] );
+Route::delete('/jobs/{job}','destroy' );
+});
+
 
 Route::view('/contact', 'contact');
