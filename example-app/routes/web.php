@@ -30,11 +30,9 @@ Route::get('/jobs/create', function(){
 });
 
 
-// Prikazuje formu za prikazivanje poslova ( show )
-Route::get('/jobs/{id}', function($id)  {
-     
-    $job = Job::find($id);
-
+// Prikazuje formu za prikazivanje odredjenog posla( show )
+Route::get('/jobs/{job}', function(Job $job)  {
+    
     return view('jobs.show', ['job' => $job]);
 });
 
@@ -57,25 +55,25 @@ Route::post('/jobs', function(){
 
 
 // Prikazuje formu za izmenu posla ( Edit )
-Route::get('jobs/{id}/edit', function ($id){
-    $job = Job::find($id);
+Route::get('jobs/{job}/edit', function (Job $job){
 
     return view('jobs.edit', ['job' => $job]);
 });
 // Azuriranje posla ( update )
-Route::patch('/jobs/{id}', function($id)  {
+Route::patch('/jobs/{job}', function(Job $job)  {
+
+     // authorize ( On Hold...)
+
      // validate
-    request()->validate()([
+    request()->validate([
         'title' => ['required', 'min:3'],
         'salary' => ['required']
     ]);
 
-     // authorize ( On Hold...)
+    
 
 
      // update
-
-    $job = Job::findOrFail($id);
 
     $job->update([
         'title' => request('title'),
@@ -84,15 +82,13 @@ Route::patch('/jobs/{id}', function($id)  {
    
      //redirect
 
-     return redirect('/jobs/', $job->id);
+     return redirect("/jobs/". $job->id);
 });
 
 // Brisanje posla ( delete )
-Route::delete('/jobs/{id}', function($id)  {
+Route::delete('/jobs/{job}', function(Job $job)  {
      // authorize ( On Hold... )
      // delete
-
-     $job = Job::findOrFail($id);
 
      $job->delete();
 
