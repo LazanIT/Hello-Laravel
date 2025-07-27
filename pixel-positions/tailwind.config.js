@@ -10,3 +10,16 @@ export default {
     },
     plugins: [],
 };
+
+// Dodaj dole u fajlu
+module.exports = {
+    content: ["./resources/**/*.blade.php", "./resources/**/*.js"],
+    theme: {
+        extend: {
+            colors: {
+                black: "#060606",
+            },
+        },
+    },
+    plugins: [],
+};
