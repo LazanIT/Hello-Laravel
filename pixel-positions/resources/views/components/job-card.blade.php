@@ -12,7 +12,7 @@
             <x-tag>Tag</x-tag>
         </div>
 
-        <img src="https://picsum.photos/seed/{{ rand(1, 111) }}/42/42" class="rounded-xl" />
+        <x-employer-logo :width="42" />
     </div>
 
 </div>
