@@ -1,17 +1,22 @@
 /** @type {import('tailwindcss').Config} */
-export default {
-    content: ["./resources/**/*.blade.php", "./resources/**/*.js"],
-    theme: {
-        extend: {
-            colors: {
-                black: "#060606",
-            },
-        },
-    },
-    plugins: [],
-};
+// export default {
+//     content: ["./resources/**/*.blade.php", "./resources/**/*.js"],
+//     theme: {
+//         extend: {
+//             colors: {
+//                 black: "#060606",
+//             },
+//             fontFamily: {
+//                 "hanken-grotesk": [
+//                     "Hanken Grotesk", "sans-serif"
+//                 ]
+//             }
+//         },
+//     },
+//     plugins: [],
+// };
 
-// Dodaj dole u fajlu
+
 module.exports = {
     content: ["./resources/**/*.blade.php", "./resources/**/*.js"],
     theme: {
@@ -19,6 +24,11 @@ module.exports = {
             colors: {
                 black: "#060606",
             },
+             fontFamily: {
+                "hanken-grotesk": [
+                    "Hanken Grotesk", "sans-serif"
+                ]
+            }
         },
     },
     plugins: [],
